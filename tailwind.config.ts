@@ -10,15 +10,29 @@ const config: Config = {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   darkMode: 'class',
+  theme: {
+    extend: {
+      container: {
+        center: true,
+      },
+    },
+  },
   plugins: [nextui({
-    layout: {},
     themes: {
       light: {
+        layout: {}, // light theme layout tokens
         colors: {
-          background: 'white',
-        }, 
+          background: '#f9fafb',
+          foreground: '#111827',
+        }, // light theme colors
       },
-      dark: { colors: {} },
+      dark: {
+        layout: {}, // dark theme layout tokens
+        colors: {
+          background: '#000000',
+          foreground: '#f9fafb',
+        }, // dark theme colors
+      },
     },
   })],
 };
