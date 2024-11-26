@@ -10,7 +10,15 @@ const model = new ChatGoogleGenerativeAI({
 const formatInstructions = 'Respond with a Json Array (Example: ["Domain 1", "Domain 2", "etc...."])';
 
 const prompt = ChatPromptTemplate.fromTemplate(
-  'You are a domain/brand name generator, I will give you a description of my website/app/business, then you will generate me some good domain name ideas without extension. Give me short names(MAX LENGTH IS 12 letters!!!!!)\n{format_instructions}\n{input}\n',
+  `I want you to generate a domain name for {input}. Follow exactly these steps:
+  Step 1:
+  Give me 3 related niches including the main niche.
+  only keep niches in plain text.
+  step 2:
+  Choose for these niches what are the top 10 dominant words that everyone in the niches know or maybe familiar with.
+  only keep words in plain text.
+  Step 3:
+  Suggest creative and unique domain names related to “Step 1 results” services. The names should be short, catchy, and easy to remember, ideally blending words related to “results of Step 2”. The names should convey a sense of modernity, technology, and engagement. Include names that may have potential for branding, are available for registration, and fit a tech-forward, innovative business model.\n{format_instructions}\n`,
 );
 
 export default async function handler(input: string): Promise<string[]> {
